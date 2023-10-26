@@ -1,0 +1,28 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="card" style="width: 18rem">
+    <img [src]="product?.img" class="card-img-top" />
+    <div class="card-body">
+      <h5 class="card-title">{{ product?.name | uppercase }}</h5>
+      <p class="card-text">
+        {{ product?.price | currency }}
+      </p>
+      <p>Product Id : {{ product?.id }}</p>
+      <p>Product Category Id : {{ product?.categoryId }}</p>
+      <p>Avalabel Quantity : {{ product?.quantity }}</p>
+      <p class="text-primary">
+        <ng-container [ngSwitch]="product?.quantity">
+          <ng-container *ngSwitchCase="0">out of stock</ng-container>
+          <ng-container *ngSwitchCase="1">only one available</ng-container>
+          <ng-container *ngSwitchCase="2">in stock</ng-container>
+        </ng-container>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="container d-flex justify-content-evenly">
+  <button class="btn btn-primary ms-5" [disabled]="index <= 0" (click)="previous()"><span class="fas fa-arrow-left"></span></button>
+  <button class="btn btn-primary me-5" [disabled]="index>=idsList.length-1" (click)="next()"><span class="fas fa-arrow-right"></span></button>
+</div>
+<div class="container d-flex justify-content-center my-5">
+  <button class="btn btn-warning" (click)="back()">Go Back</button>
+</div>

@@ -1,0 +1,47 @@
+<div class="row mb-3">
+  <input
+    type="range"
+    name="filterByPrice"
+    id="filterByPrice"
+    class="form-control"
+    [(ngModel)]="priceFilter"
+    [(ngModel)]="inputValue"
+    min="0"
+    max="10000"
+    step="100"
+  />
+  <span id="value">{{ inputValue }}</span
+  ><label for="filterByPrice" class="form-label">Filter By Price</label>
+</div>
+
+<p>parent-component works!</p>
+<div class="d-flex">
+  <app-sidebar class="col-4"></app-sidebar>
+  <app-products
+    class="col-8"
+    [price]="priceFilter"
+    (onAddToCart)="addToCart($event)"
+  ></app-products>
+</div>
+
+<caption>
+  Cart
+</caption>
+<table class="table table-dark table-striped" *ngIf="cart">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of cart">
+      <td>{{ item.product.name }}</td>
+      <td>{{ item.product.price }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.product.price * item.quantity }}</td>
+    </tr>
+  </tbody>
+</table>

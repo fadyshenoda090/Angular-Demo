@@ -1,0 +1,13 @@
+#logo{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+ul{
+    list-style: none;
+}
+.image-card{
+    width: 5%;
+    height: 5%;
+    margin-right: 2%;
+}

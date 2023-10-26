@@ -1,0 +1,321 @@
+<section class="vh-50 bg-dark">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div
+          class="card card-registration"
+        >
+          <div class="card-body p-4 p-md-5 bg-secondary">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+            <form (ngSubmit)="addNewUser()" #signupForm="ngForm" class="bg-secondary">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label" for="firstName">First Name</label>
+                    <input
+                      [ngClass]="{
+                        'is-invalid':
+                          (firstNameInput.dirty || firstNameInput.touched) &&
+                          !firstNameInput.valid
+                      }"
+                      required
+                      [(ngModel)]="user.firstName"
+                      #firstNameInput="ngModel"
+                      minlength="3"
+                      name="firstName"
+                      pattern="^[A-Za-z]+$"
+                      type="text"
+                      id="firstName"
+                      class="form-control form-control-lg"
+                    />
+                    <span class="invalid-feedback">
+                      <span *ngIf="firstNameInput.errors?.['required']"
+                        >first name is required</span
+                      >
+                      <span *ngIf="firstNameInput.errors?.['minlength']"
+                        >first name must be at least 3 chars</span
+                      >
+                      <span *ngIf="firstNameInput.errors?.['pattern']"
+                        >first name mustn't has special chars</span
+                      >
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="form-label" for="lastName">Last Name</label>
+                    <input
+                      [ngClass]="{
+                        'is-invalid':
+                          (lastNameInput.dirty || lastNameInput.touched) &&
+                          !lastNameInput.valid
+                      }"
+                      required
+                      [(ngModel)]="user.lastName"
+                      minlength="3"
+                      #lastNameInput="ngModel"
+                      name="lastName"
+                      pattern="^[A-Za-z]+$"
+                      type="text"
+                      id="lastName"
+                      class="form-control form-control-lg"
+                    />
+                    <span class="invalid-feedback">
+                      <span *ngIf="lastNameInput.errors?.['required']"
+                        >last name is required</span
+                      >
+                      <span *ngIf="lastNameInput.errors?.['minlength']"
+                        >last name must be at least 3 chars</span
+                      >
+                      <span *ngIf="lastNameInput.errors?.['pattern']"
+                        >last name mustn't has special chars</span
+                      >
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label class="form-label" for="emailAddress">Email</label>
+                  <input
+                    [ngClass]="{
+                      'is-invalid':
+                        (emailInput.dirty || emailInput.touched) &&
+                        !emailInput.valid
+                    }"
+                    required
+                    [(ngModel)]="user.email"
+                    #emailInput="ngModel"
+                    name="emailAddress"
+                    pattern="^[a-zA-Z0-9]+@(yahoo|gmail).com$"
+                    type="email"
+                    id="emailAddress"
+                    email
+                    class="form-control form-control-lg"
+                  />
+                  <span class="invalid-feedback">
+                    <span *ngIf="emailInput.errors?.['required']"
+                      >email is required</span
+                    >
+                    <span *ngIf="emailInput.errors?.['pattern']"
+                      >email must be like xxxx@(gamail or yahoo).com</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label class="form-label" for="password">Password</label>
+                  <input
+                    [ngClass]="{
+                      'is-invalid':
+                        (passwordInput.dirty || passwordInput.touched) &&
+                        !passwordInput.valid
+                    }"
+                    required
+                    [(ngModel)]="user.password"
+                    #passwordInput="ngModel"
+                    minlength="8"
+                    name="password"
+                    type="password"
+                    id="password"
+                    class="form-control form-control-lg"
+                  />
+                  <span class="invalid-feedback">
+                    <span *ngIf="passwordInput.errors?.['required']"
+                      >password is required</span
+                    >
+                    <span *ngIf="passwordInput.errors?.['minlength']"
+                      >password must be at least 8 chars and numbers</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label class="form-label" for="password">Confirm Password</label>
+                  <input
+                    [ngClass]="{
+                      'is-invalid':
+                        (confirmPasswordInput.dirty || confirmPasswordInput.touched) &&
+                        !confirmPasswordInput.valid
+                    }"
+                    required
+                    [(ngModel)]="user.password"
+                    #confirmPasswordInput="ngModel"
+                    minlength="8"
+                    name="confirmPassword"
+                    type="password"
+                    id="confirmPassword"
+                    class="form-control form-control-lg"
+                  />
+                  <span class="invalid-feedback">
+                    <span *ngIf="passwordInput.errors?.['required']"
+                      >Confirm password is required</span
+                    >
+                    <span *ngIf="passwordInput.errors?.['minlength']"
+                      >password must be at least 8 chars and numbers</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label class="form-label" for="phoneNumber"
+                    >Phone Number</label
+                  >
+                  <input
+                    [ngClass]="{
+                      'is-invalid':
+                        (phoneNumberInput.dirty || phoneNumberInput.touched) &&
+                        !phoneNumberInput.valid
+                    }"
+                    required
+                    [(ngModel)]="user.phoneNumber"
+                    #phoneNumberInput="ngModel"
+                    name="phoneNumber"
+                    pattern="^(010|011|012|015)[0-9]{8}$"
+                    type="tel"
+                    id="phoneNumber"
+                    class="form-control form-control-lg"
+                  />
+                  <span class="invalid-feedback">
+                    <span *ngIf="phoneNumberInput.errors?.['required']"
+                      >phone number is required</span
+                    >
+                    <span *ngIf="phoneNumberInput.errors?.['pattern']"
+                      >phone number must start with 010 or 011 or 012 or 015 and
+                      be exactly 11 numbers</span
+                    >
+                  </span>
+                </div>
+                <button
+                  class="btn btn-success mt-3"
+                  type="button"
+                  (click)="addAnotherPhone()"
+                >
+                  Add Another Phone Number
+                </button>
+              </div>
+              <div class="col-sm-12 mb-4 pb-2" *ngIf="addAnotherPhoneNumber">
+                <div class="form-outline">
+                  <label class="form-label" for="additionalPhoneNumber"
+                    >Additional Phone Number</label
+                  >
+                  <input
+                    [ngClass]="{
+                      'is-invalid':
+                        (additionalPhoneNumberInput.dirty ||
+                          additionalPhoneNumberInput.touched) &&
+                        !additionalPhoneNumberInput.valid
+                    }"
+                    required
+                    [(ngModel)]="additionalPhoneNumber"
+                    #additionalPhoneNumberInput="ngModel"
+                    name="additionalPhoneNumber"
+                    pattern="^(010|011|012|015)[0-9]{8}$"
+                    type="tel"
+                    id="additionalPhoneNumber"
+                    class="form-control form-control-lg"
+                  />
+                  <span class="invalid-feedback">
+                    <span
+                      *ngIf="additionalPhoneNumberInput.errors?.['required']"
+                      >Phone number is required</span
+                    >
+                    <span *ngIf="additionalPhoneNumberInput.errors?.['pattern']"
+                      >Phone number must start with 010, 011, 012, or 015 and be
+                      exactly 11 numbers</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label class="form-label" for="street">City</label>
+                  <input
+                    [ngClass]="{
+                      'is-invalid':
+                        (cityInput.dirty || cityInput.touched) &&
+                        !cityInput.valid
+                    }"
+                    required
+                    [(ngModel)]="user.address.city"
+                    #cityInput="ngModel"
+                    name="street"
+                    type="text"
+                    id="city"
+                    class="form-control form-control-lg"
+                  />
+                  <span class="invalid-feedback">
+                    <span *ngIf="cityInput.errors?.['required']"
+                      >City is required</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label class="form-label" for="street">Street</label>
+                  <input
+                    [ngClass]="{
+                      'is-invalid':
+                        (postCodeInput.dirty || postCodeInput.touched) &&
+                        !postCodeInput.valid
+                    }"
+                    required
+                    [(ngModel)]="user.address.street"
+                    #postCodeInput="ngModel"
+                    name="street"
+                    type="text"
+                    id="street"
+                    class="form-control form-control-lg"
+                  />
+                  <span class="invalid-feedback">
+                    <span *ngIf="postCodeInput.errors?.['required']"
+                      >Street is required</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div class="col-sm-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label class="form-label" for="postCode">Post Code</label>
+                  <input
+                    [ngClass]="{
+                      'is-invalid':
+                        (postCodeInput.dirty || postCodeInput.touched) &&
+                        !postCodeInput.valid
+                    }"
+                    required
+                    [(ngModel)]="user.address.postCode"
+                    #postCodeInput="ngModel"
+                    name="postCode"
+                    type="text"
+                    id="postCode"
+                    class="form-control form-control-lg"
+                  />
+                  <span class="invalid-feedback">
+                    <span *ngIf="postCodeInput.errors?.['required']"
+                      >Post Code is required</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div class="mt-4 pt-2 d-flex justify-content-center">
+                <button
+                  [disabled]="signupForm.invalid"
+                  class="btn btn-primary btn-lg"
+                  type="submit"
+                  value="Submit"
+                >
+                  Sign up
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

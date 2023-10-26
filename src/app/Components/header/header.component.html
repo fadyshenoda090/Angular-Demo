@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+    <div class="container-fluid ">
+        <a class="navbar-brand" href="#"> <i class="fab fa-angular text-danger fs-5">Angular</i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink="/Home" routerLinkActive="isActive">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/Products" routerLinkActive="isActive">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/Orders" routerLinkActive="isActive">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/UserTemplate" routerLinkActive="isActive">Template Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/ProductTemplate" routerLinkActive="isActive">Add New Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/userLogIn" routerLinkActive="isActive" [hidden]="user" (click)="logInFunction()">LogIn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/userLogOut" routerLinkActive="isActive" [hidden]="!user" (click)="logOutFunction  ()">LogOut</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/UserLazy/login" routerLinkActive="isActive" (click)="logInFunction  ()">Lazy Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/UserLazy/viewProfile" routerLinkActive="isActive" [hidden]="!user">View Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/UserLazy/editProfile" routerLinkActive="isActive" [hidden]="!user">Edit Profile</a>
+                </li>
+                </ul>
+        </div>
+    </div>
+</nav>

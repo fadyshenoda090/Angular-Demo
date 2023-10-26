@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "id": 4,
+      "name": "assetto corsa",
+      "quantity": 0,
+      "price": 700,
+      "img": "https://eg.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/85/881733/1.jpg?5568",
+      "categoryId": 2
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Fady",
+      "lastName": "Shenoda",
+      "email": "fady@email.com",
+      "password": "123456"
+    },
+    {
+      "firstName": "Ahmed",
+      "lastName": "Ali",
+      "email": "ahmedAli@gmail.com",
+      "password": "123456789",
+      "id": 2
+    },
+    {
+      "firstName": "Hisoka",
+      "lastName": "Moro",
+      "email": "HisokaM@gmail.com",
+      "password": "123456789",
+      "phoneNumber": "01205753202",
+      "id": 3
+    },
+    {
+      "firstName": "Mario",
+      "lastName": "Farah",
+      "email": "supermario@gmail.com",
+      "password": "123456789",
+      "phoneNumber": "01551053361",
+      "id": 7
+    }
+  ]
+}

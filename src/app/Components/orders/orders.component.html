@@ -1,0 +1,12 @@
+<ng-container *ngIf="prdIdList">
+  <div class="container">
+    <div *ngFor="let id of prdIdList">
+      <p [ngSwitch]="id">
+        <ng-container *ngSwitchCase="1">Action</ng-container>
+        <ng-container *ngSwitchCase="2">Racing</ng-container>
+        <ng-container *ngSwitchCase="3">Shooter</ng-container>
+        <!-- <ng-container *ngSwitchDefault>In Stoke</ng-container> -->
+      </p>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,145 @@
+<div class="container-fluid">
+  <div class="container d-flex">
+    <img [src]="pStore.logo" class="rounded-circle me-3" id="logo" />
+    <h1>{{ pStore.name }}</h1>
+    <ul class="d-flex">
+      <li class="text-success fs-5">Our Branches</li>
+      <li><i class="fa far fa-hand-point-right fs-2 text-success mx-3"></i></li>
+      <li class="mx-3 fs-5" *ngFor="let branch of pStore.barnches">
+        {{ branch }}
+      </li>
+    </ul>
+  </div>
+  <button href="#" class="btn btn-primary my-3" (click)="toggleImg()">
+    Hide/Show Products Images
+  </button>
+  <p>
+    Cridet Card Number Format Should be like
+    <i class="fa far fa-hand-point-right fs-2 text-success mx-3"></i>
+    {{ cridetNum | cridtCardPipe }} &nbsp;&nbsp; not like
+    <i class="fa far fa-hand-point-right fs-2 text-success mx-3"></i>
+    1234567891011123
+  </p>
+  <div class="container-fluid">
+    <div class="input-group rounded">
+      <input
+        type="text"
+        class="form-control rounded"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="search-addon"
+        #searchValue
+      />
+      <button
+        class="input-group-text border-0 btn btn-primary"
+        id="search-addon"
+        (click)="searchWithCatId(searchValue.value)"
+      >
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <ng-container *ngIf="searchResults">
+      <div
+        class="container border-bottom my-1"
+        *ngFor="let item of searchResults"
+      >
+        <img class="image-card" [src]="item.img" alt="img" />
+        <span class="my-1 fs-3">{{ item.name }}</span>
+        <p class="my-1">Price {{ item.price | currency }}</p>
+        <p class="my-1">Quantity {{ item.quantity }}</p>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="container-fluid my-3">
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      [(ngModel)]="selectFilter"
+    >
+      <option selected>Choose Category</option>
+      <option value="1">Action</option>
+      <option value="2">Racing</option>
+      <option value="3">Shooter</option>
+      <option value="4">Sports</option>
+    </select>
+
+    <div class="row mt-3">
+      <ng-container *ngFor="let prd of ProductSelected">
+        <div
+          class="card mx-3 my-2"
+          style="width: 17rem"
+          [class.bg-warning]="prd.quantity == 1"
+        >
+          <img [src]="prd.img" class="img-fluid h-75 mt-2" *ngIf="showCard" />
+          <div class="card-body">
+            <h5 class="card-title">Name : {{ prd.name | uppercase }}</h5>
+            <p class="card-text">Quantity Available : {{ prd.quantity }}</p>
+            <ng-container *ngIf="prd.quantity > 0; else outOfStockRef">
+              <p class="text-primary">ng template IN STOCK</p>
+            </ng-container>
+            <ng-template #outOfStockRef>
+              <p class="text-danger">ng template OUT OF STOCK</p>
+            </ng-template>
+            <div [ngSwitch]="prd.quantity">
+              <ng-container *ngSwitchCase="0">Out Of Stock</ng-container>
+              <ng-container *ngSwitchCase="1">Only One Available</ng-container>
+              <ng-container *ngSwitchCase="2">Only Two Available</ng-container>
+              <ng-container *ngSwitchDefault>In Stock</ng-container>
+            </div>
+            <p class="card-text">Category : {{ prd.categoryId }}</p>
+            <div [ngSwitch]="prd.categoryId">
+              <ng-container *ngSwitchCase="1">Action</ng-container>
+              <ng-container *ngSwitchCase="2">Racing</ng-container>
+              <ng-container *ngSwitchCase="3">Shooter</ng-container>
+              <ng-container *ngSwitchCase="4">Sports</ng-container>
+            </div>
+            <p
+              class="card-text"
+              [ngClass]="prd.price < 300 ? 'text-success' : 'text-danger'"
+            >
+              Price : {{ prd.price | currency : "USD" : "code" }}
+            </p>
+            <div class="d-flex justify-content-around">
+              <button
+                href="#"
+                class="btn btn-primary"
+                [disabled]="prd.quantity == 0"
+                [style.color]="prd.price > 200 ? 'black' : ''"
+                (click)="decreaseQ(prd)"
+              >
+                Buy
+              </button>
+              <button
+                href="#"
+                class="btn btn-success"
+                (click)="prdDetailes(prd.id)"
+              >
+                Details
+              </button>
+            </div>
+            <div class="container-fluid d-flex justify-content-around my-4">
+              <button class="btn btn-success" (click)="updateProduct(prd.id)">
+                Update
+              </button>
+              <button class="btn btn-danger" (click)="deleteProduct(prd.id)">
+                Delete
+              </button>
+            </div>
+            <button
+              href="#"
+              class="btn btn-success mt-2"
+              (click)="addToCart(prd)"
+              [disabled]="prd.quantity == 0"
+            >
+              Add To Cart
+            </button>
+          </div>
+          <div *ngIf="showPara" class="container-fluid">
+            <p class="text-dark">Thank you for purchasing {{ clientName }}</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
